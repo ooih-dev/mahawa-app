@@ -1,0 +1,98 @@
+{
+  "app": {
+    "title": "Ma Hawa — Трекер воды",
+    "subtitle": "Оставайтесь гидратированными"
+  },
+  "nav": {
+    "tracker": "Трекер",
+    "stats": "Статистика",
+    "shop": "Магазин",
+    "profile": "Профиль"
+  },
+  "tracker": {
+    "dailyGoal": "Дневная цель",
+    "ml": "мл",
+    "tapToAdd": "Нажмите на стакан, чтобы добавить",
+    "quickAdd": "Быстрое добавление",
+    "streak": "дней подряд",
+    "streakTitle": "Серия",
+    "today": "Сегодня",
+    "schedule": "Расписание на сегодня",
+    "expected": "Ожидается",
+    "completed": "Выпито",
+    "missed": "Пропущено",
+    "remaining": "Осталось",
+    "great": "Отлично!",
+    "keepGoing": "Так держать!",
+    "goalReached": "Цель достигнута!",
+    "goalReachedDesc": "Вы выполнили дневную норму воды!"
+  },
+  "stats": {
+    "title": "Статистика",
+    "weekly": "Неделя",
+    "monthly": "Месяц",
+    "average": "Среднее",
+    "total": "Всего",
+    "bestDay": "Лучший день",
+    "thisWeek": "На этой неделе",
+    "thisMonth": "В этом месяце",
+    "liters": "л",
+    "noData": "Нет данных за выбранный период",
+    "day": "день",
+    "week": "нед",
+    "month": "мес",
+    "progress": "Прогресс",
+    "trend": "Тенденция",
+    "completion": "Выполнение"
+  },
+  "shop": {
+    "title": "Магазин",
+    "subtitle": "Продукты Ma Hawa",
+    "description": "Откройте для себя нашу продукцию для здоровья и гидратации",
+    "order": "Заказать на сайте",
+    "viewMore": "Подробнее",
+    "features": "Особенности",
+    "comingSoon": "Скоро в продаже",
+    "ourProducts": "Наша продукция",
+    "learnMore": "Узнать больше на mahawa.ae"
+  },
+  "profile": {
+    "title": "Профиль",
+    "settings": "Настройки",
+    "language": "Язык",
+    "appearance": "Внешний вид",
+    "darkMode": "Тёмная тема",
+    "lightMode": "Светлая тема",
+    "notifications": "Уведомления",
+    "notificationsDesc": "Напоминания о питье воды",
+    "privacy": "Конфиденциальность",
+    "privacyDesc": "Настройки приватности",
+    "security": "Безопасность",
+    "securityDesc": "Настройки безопасности",
+    "about": "О приложении",
+    "version": "Версия",
+    "rateUs": "Оценить приложение",
+    "share": "Поделиться",
+    "support": "Поддержка",
+    "clearData": "Очистить данные",
+    "clearDataConfirm": "Все данные будут удалены. Продолжить?",
+    "dataCleared": "Данные очищены"
+  },
+  "common": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "confirm": "Подтвердить",
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "success": "Успешно",
+    "offline": "Нет подключения к интернету",
+    "retry": "Повторить"
+  },
+  "schedule": {
+    "morning": "Утро",
+    "afternoon": "День",
+    "evening": "Вечер",
+    "beforeMeal": "Перед едой",
+    "afterMeal": "После еды"
+  }
+}

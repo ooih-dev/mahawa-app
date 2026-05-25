@@ -1,0 +1,98 @@
+{
+  "app": {
+    "title": "Ma Hawa — تتبع المياه",
+    "subtitle": "حافظ على رطوبتك"
+  },
+  "nav": {
+    "tracker": "التتبع",
+    "stats": "الإحصائيات",
+    "shop": "المتجر",
+    "profile": "الملف الشخصي"
+  },
+  "tracker": {
+    "dailyGoal": "الهدف اليومي",
+    "ml": "مل",
+    "tapToAdd": "اضغط على الكوب لإضافة الماء",
+    "quickAdd": "إضافة سريعة",
+    "streak": "أيام متتالية",
+    "streakTitle": "التسلسل",
+    "today": "اليوم",
+    "schedule": "جدول اليوم",
+    "expected": "متوقع",
+    "completed": "تم",
+    "missed": "فات",
+    "remaining": "متبقي",
+    "great": "ممتاز!",
+    "keepGoing": "استمر!",
+    "goalReached": "تم تحقيق الهدف!",
+    "goalReachedDesc": "لقد حققت هدفك اليومي من الماء!"
+  },
+  "stats": {
+    "title": "الإحصائيات",
+    "weekly": "أسبوع",
+    "monthly": "شهر",
+    "average": "المتوسط",
+    "total": "الإجمالي",
+    "bestDay": "أفضل يوم",
+    "thisWeek": "هذا الأسبوع",
+    "thisMonth": "هذا الشهر",
+    "liters": "لتر",
+    "noData": "لا توجد بيانات للفترة المحددة",
+    "day": "يوم",
+    "week": "أسبوع",
+    "month": "شهر",
+    "progress": "التقدم",
+    "trend": "الاتجاه",
+    "completion": "الإنجاز"
+  },
+  "shop": {
+    "title": "المتجر",
+    "subtitle": "منتجات Ma Hawa",
+    "description": "اكتشف منتجاتنا للصحة والترطيب",
+    "order": "اطلب من الموقع",
+    "viewMore": "عرض المزيد",
+    "features": "المميزات",
+    "comingSoon": "قريباً",
+    "ourProducts": "منتجاتنا",
+    "learnMore": "اعرف المزيد على mahawa.ae"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "language": "اللغة",
+    "appearance": "المظهر",
+    "darkMode": "الوضع الداكن",
+    "lightMode": "الوضع الفاتح",
+    "notifications": "الإشعارات",
+    "notificationsDesc": "تذكيرات شرب الماء",
+    "privacy": "الخصوصية",
+    "privacyDesc": "إعدادات الخصوصية",
+    "security": "الأمان",
+    "securityDesc": "إعدادات الأمان",
+    "about": "حول",
+    "version": "الإصدار",
+    "rateUs": "قيم التطبيق",
+    "share": "مشاركة",
+    "support": "الدعم",
+    "clearData": "مسح البيانات",
+    "clearDataConfirm": "سيتم حذف جميع البيانات. هل تريد المتابعة؟",
+    "dataCleared": "تم مسح البيانات"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "loading": "جارٍ التحميل...",
+    "error": "خطأ",
+    "success": "نجاح",
+    "offline": "لا يوجد اتصال بالإنترنت",
+    "retry": "إعادة المحاولة"
+  },
+  "schedule": {
+    "morning": "الصباح",
+    "afternoon": "بعد الظهر",
+    "evening": "المساء",
+    "beforeMeal": "قبل الأكل",
+    "afterMeal": "بعد الأكل"
+  }
+}

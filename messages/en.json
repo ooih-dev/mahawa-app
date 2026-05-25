@@ -1,0 +1,98 @@
+{
+  "app": {
+    "title": "Ma Hawa — Water Tracker",
+    "subtitle": "Stay Hydrated"
+  },
+  "nav": {
+    "tracker": "Tracker",
+    "stats": "Statistics",
+    "shop": "Shop",
+    "profile": "Profile"
+  },
+  "tracker": {
+    "dailyGoal": "Daily Goal",
+    "ml": "ml",
+    "tapToAdd": "Tap the glass to add water",
+    "quickAdd": "Quick Add",
+    "streak": "days streak",
+    "streakTitle": "Streak",
+    "today": "Today",
+    "schedule": "Today's Schedule",
+    "expected": "Expected",
+    "completed": "Completed",
+    "missed": "Missed",
+    "remaining": "Remaining",
+    "great": "Great!",
+    "keepGoing": "Keep going!",
+    "goalReached": "Goal reached!",
+    "goalReachedDesc": "You've met your daily water goal!"
+  },
+  "stats": {
+    "title": "Statistics",
+    "weekly": "Week",
+    "monthly": "Month",
+    "average": "Average",
+    "total": "Total",
+    "bestDay": "Best Day",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "liters": "L",
+    "noData": "No data for selected period",
+    "day": "day",
+    "week": "wk",
+    "month": "mo",
+    "progress": "Progress",
+    "trend": "Trend",
+    "completion": "Completion"
+  },
+  "shop": {
+    "title": "Shop",
+    "subtitle": "Ma Hawa Products",
+    "description": "Discover our health and hydration products",
+    "order": "Order on Website",
+    "viewMore": "View More",
+    "features": "Features",
+    "comingSoon": "Coming Soon",
+    "ourProducts": "Our Products",
+    "learnMore": "Learn more at mahawa.ae"
+  },
+  "profile": {
+    "title": "Profile",
+    "settings": "Settings",
+    "language": "Language",
+    "appearance": "Appearance",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "notifications": "Notifications",
+    "notificationsDesc": "Water drinking reminders",
+    "privacy": "Privacy",
+    "privacyDesc": "Privacy settings",
+    "security": "Security",
+    "securityDesc": "Security settings",
+    "about": "About",
+    "version": "Version",
+    "rateUs": "Rate the app",
+    "share": "Share",
+    "support": "Support",
+    "clearData": "Clear data",
+    "clearDataConfirm": "All data will be deleted. Continue?",
+    "dataCleared": "Data cleared"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "offline": "No internet connection",
+    "retry": "Retry"
+  },
+  "schedule": {
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening",
+    "beforeMeal": "Before meal",
+    "afterMeal": "After meal"
+  }
+}

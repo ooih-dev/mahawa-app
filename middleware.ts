@@ -30,7 +30,10 @@ export function middleware(request: NextRequest) {
   const firstSegment = segments[0];
 
   if (LOCALES.includes(firstSegment)) {
-    return NextResponse.next();
+    // Set next-intl locale header so getRequestConfig receives the URL locale
+    const response = NextResponse.next();
+    response.headers.set("X-NEXT-INTL-LOCALE", firstSegment);
+    return response;
   }
 
   // Redirect to localized path

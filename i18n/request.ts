@@ -1,26 +1,23 @@
 import { getRequestConfig } from "next-intl/server";
-import { cookies, headers } from "next/headers";
+import { cookies } from "next/headers";
 import { routing } from "./routing";
 
 const SUPPORTED = routing.locales as readonly string[];
 
-function pickLocale(input?: string | null): string {
-  if (!input) return routing.defaultLocale;
-  const raw = input.toLowerCase();
-  if ((SUPPORTED as readonly string[]).includes(raw)) return raw;
-  const head = raw.split(",")[0]?.split("-")[0];
-  if (head && (SUPPORTED as readonly string[]).includes(head)) return head;
-  return routing.defaultLocale;
-}
-
 export default getRequestConfig(async ({ locale: urlLocale }) => {
-  // Start with URL locale (from [locale] segment), fall back to default
-  let locale: string = pickLocale(urlLocale);
+  // urlLocale comes from X-NEXT-INTL-LOCALE header set by middleware
+  let locale: string =
+    urlLocale && (SUPPORTED as readonly string[]).includes(urlLocale)
+      ? urlLocale
+      : routing.defaultLocale;
 
   try {
     // Cookie overrides URL locale when set
     const fromCookie = cookies().get("mahawa-locale")?.value;
-    if (fromCookie && (SUPPORTED as readonly string[]).includes(fromCookie.toLowerCase())) {
+    if (
+      fromCookie &&
+      (SUPPORTED as readonly string[]).includes(fromCookie.toLowerCase())
+    ) {
       locale = fromCookie.toLowerCase();
     }
   } catch {}

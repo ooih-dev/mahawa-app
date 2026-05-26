@@ -1,8 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
-import { useState, useTransition, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { GlobeIcon, CheckIcon } from "@/icons";
 
@@ -34,10 +33,7 @@ function setLocaleCookie(loc: Locale) {
 
 export default function LanguageSwitcher() {
   const locale = useLocale() as Locale;
-  const router = useRouter();
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [, startTransition] = useTransition();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [pos, setPos] = useState({ top: 0, right: 0 });
   const [mounted, setMounted] = useState(false);
@@ -60,12 +56,8 @@ export default function LanguageSwitcher() {
   const switchTo = (loc: Locale) => {
     setLocaleCookie(loc);
     setIsOpen(false);
-    startTransition(() => {
-      const segments = pathname.split("/").filter(Boolean);
-      const rest = segments.slice(1).join("/");
-      const newPath = rest ? `/${rest}` : `/`;
-      router.push(newPath);
-    });
+    const newPath = window.location.pathname.replace(/^\/(ru|en|ar)/, `/${loc}`);
+    window.location.href = newPath.startsWith(`/${loc}`) ? newPath : `/${loc}${newPath}`;
   };
 
   return (

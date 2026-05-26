@@ -21,7 +21,7 @@ export default function Providers({ children, locale, messages, timeZone }: Prop
 
   if (!mounted) {
     return (
-      <NextIntlClientProvider locale={locale} messages={messages} timeZone={timeZone}>
+      <NextIntlClientProvider key={locale} locale={locale} messages={messages} timeZone={timeZone}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -37,7 +37,7 @@ export default function Providers({ children, locale, messages, timeZone }: Prop
   }
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages} timeZone={timeZone}>
+    <NextIntlClientProvider key={locale} locale={locale} messages={messages} timeZone={timeZone}>
       <ThemeProvider
         attribute="class"
         defaultTheme="light"

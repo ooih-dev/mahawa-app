@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useTransition } from "react";
 import { GlobeIcon, CheckIcon } from "@/icons";
@@ -20,6 +20,12 @@ const localeFlags: Record<Locale, string> = {
   ar: "AR",
 };
 
+const langLabel: Record<string, string> = {
+  ru: "Язык",
+  en: "Language",
+  ar: "اللغة",
+};
+
 function setLocaleCookie(loc: Locale) {
   const oneYear = 60 * 60 * 24 * 365;
   document.cookie = `mahawa-locale=${loc}; path=/; max-age=${oneYear}; SameSite=Lax`;
@@ -27,7 +33,6 @@ function setLocaleCookie(loc: Locale) {
 
 export default function LanguageSwitcher() {
   const locale = useLocale() as Locale;
-  const t = useTranslations("profile");
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -37,10 +42,11 @@ export default function LanguageSwitcher() {
     setLocaleCookie(loc);
     setIsOpen(false);
     startTransition(() => {
-      // Navigate to same page with new locale prefix
       const segments = pathname.split("/").filter(Boolean);
+      // Navigate without locale prefix — middleware will redirect
+      // to the correct locale path based on the cookie we just set.
       const rest = segments.slice(1).join("/");
-      const newPath = rest ? `/${loc}/${rest}` : `/${loc}`;
+      const newPath = rest ? `/${rest}` : `/`;
       router.push(newPath);
     });
   };
@@ -52,7 +58,9 @@ export default function LanguageSwitcher() {
         className="btn-ghost flex items-center gap-2 w-full"
       >
         <GlobeIcon size={18} />
-        <span className="flex-1 text-left">{t("language")}</span>
+        <span className="flex-1 text-left">
+          {langLabel[locale] || "Language"}
+        </span>
         <span className="text-sm font-medium text-brand-500 bg-brand-50 dark:bg-brand-950/50 px-2 py-0.5 rounded-lg">
           {localeFlags[locale] || locale}
         </span>

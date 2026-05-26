@@ -60,15 +60,7 @@ export default async function RootLayout({
       </head>
       <body className="antialiased pb-24">
         <Providers locale={locale} messages={messages} timeZone={timeZone}>
-          <header className="mx-auto max-w-lg px-4 pt-4 pb-1 flex items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/mahawa-icon.svg"
-              alt="Ma Hawa"
-              className="h-10 w-auto"
-            />
-          </header>
-          <main className="mx-auto max-w-lg min-h-screen px-4 pt-3 pb-6">
+          <main className="mx-auto max-w-lg min-h-screen px-4 pt-6 pb-6">
             {children}
           </main>
           <BottomNav />

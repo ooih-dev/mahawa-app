@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { useWater } from "@/lib/water-store";
 import WaterGlass from "@/components/WaterGlass";
-import SmallGlass from "@/components/SmallGlass";
 import {
   WaterDrop,
   FireIcon,
@@ -15,12 +14,11 @@ import {
 import { useState, useEffect } from "react";
 
 const quickAddAmounts = [100, 250, 500];
-const TOTAL_GLASSES = 8;
 const GLASS_SIZE = 250;
 
 export default function TrackerPage() {
   const t = useTranslations();
-  const { data, addWater, removeWater, getProgress, streak } = useWater();
+  const { data, addWater, getProgress, streak } = useWater();
   const progress = getProgress();
   const [animateIn, setAnimateIn] = useState(false);
   const [rippleId, setRippleId] = useState<number | null>(null);
@@ -33,27 +31,6 @@ export default function TrackerPage() {
     addWater(amount);
     setRippleId(Date.now());
     setTimeout(() => setRippleId(null), 600);
-  };
-
-  const filledCount = Math.min(
-    Math.floor(data.total / GLASS_SIZE),
-    TOTAL_GLASSES
-  );
-
-  const handleSmallGlassTap = (index: number) => {
-    if (index === filledCount) {
-      addWater(GLASS_SIZE);
-      setRippleId(Date.now());
-      setTimeout(() => setRippleId(null), 600);
-    } else if (index < filledCount) {
-      if (index === filledCount - 1) {
-        removeWater(GLASS_SIZE);
-      } else {
-        addWater(GLASS_SIZE);
-      }
-    } else {
-      addWater(GLASS_SIZE);
-    }
   };
 
   const isGoalReached = data.total >= data.goal;
@@ -155,34 +132,6 @@ export default function TrackerPage() {
           animateIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <WaterDrop size={14} className="text-brand-500" />
-            <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">
-              {t("tracker.drinksLog")}
-            </h3>
-          </div>
-          <span className="text-xs text-[var(--color-text-muted)] tabular-nums">
-            {filledCount}/{TOTAL_GLASSES}
-          </span>
-        </div>
-        <div className="flex items-end justify-between gap-1">
-          {Array.from({ length: TOTAL_GLASSES }, (_, i) => (
-            <SmallGlass
-              key={i}
-              index={i}
-              filled={i < filledCount}
-              onClick={() => handleSmallGlassTap(i)}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div
-        className={`glass-card rounded-3xl p-4 transition-all duration-500 delay-200 ${
-          animateIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
-      >
         <div className="flex items-center gap-2 mb-3">
           <ZapIcon size={14} className="text-brand-500" />
           <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">
@@ -204,7 +153,7 @@ export default function TrackerPage() {
       </div>
 
       <div
-        className={`glass-card rounded-3xl p-4 transition-all duration-500 delay-250 ${
+        className={`glass-card rounded-3xl p-4 transition-all duration-500 delay-200 ${
           animateIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >

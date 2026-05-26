@@ -72,7 +72,7 @@ export default function LanguageSwitcher() {
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 top-full mt-2 z-50 w-48 rounded-2xl overflow-hidden glass-card border border-[var(--color-border)] animate-scale-in">
+          <div className="absolute right-0 top-full mt-2 z-[9999] w-48 max-h-60 overflow-y-auto rounded-2xl overflow-hidden glass-card border border-[var(--color-border)] animate-scale-in">
             {LOCALES.map((loc) => {
               const isSelected = locale === loc;
               return (

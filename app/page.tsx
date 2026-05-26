@@ -42,12 +42,12 @@ export default function TrackerPage() {
           animateIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <div className="flex flex-col items-center justify-center gap-2 mb-1">
+        <div className="flex items-center justify-center gap-3 mb-1">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/mahawa-icon.svg"
             alt="Ma Hawa"
-            className="h-14 w-auto"
+            className="h-10 w-10"
           />
           <h1 className="text-lg font-semibold tracking-tight text-[var(--color-text-primary)]">
             {t("app.title")}

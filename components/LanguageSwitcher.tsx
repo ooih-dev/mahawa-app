@@ -2,7 +2,8 @@
 
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useRef, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { GlobeIcon, CheckIcon } from "@/icons";
 
 const LOCALES = ["ru", "en", "ar"] as const;
@@ -37,14 +38,30 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [, startTransition] = useTransition();
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [pos, setPos] = useState({ top: 0, right: 0 });
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const openDropdown = useCallback(() => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setPos({
+        top: rect.bottom + 8,
+        right: window.innerWidth - rect.right,
+      });
+    }
+    setIsOpen(true);
+  }, []);
 
   const switchTo = (loc: Locale) => {
     setLocaleCookie(loc);
     setIsOpen(false);
     startTransition(() => {
       const segments = pathname.split("/").filter(Boolean);
-      // Navigate without locale prefix — middleware will redirect
-      // to the correct locale path based on the cookie we just set.
       const rest = segments.slice(1).join("/");
       const newPath = rest ? `/${rest}` : `/`;
       router.push(newPath);
@@ -52,9 +69,10 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="relative">
+    <div>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        ref={buttonRef}
+        onClick={openDropdown}
         className="btn-ghost flex items-center gap-2 w-full"
       >
         <GlobeIcon size={18} />
@@ -66,13 +84,16 @@ export default function LanguageSwitcher() {
         </span>
       </button>
 
-      {isOpen && (
+      {isOpen && mounted && createPortal(
         <>
           <div
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 top-full mt-2 z-[9999] w-48 max-h-60 overflow-y-auto rounded-2xl overflow-hidden glass-card border border-[var(--color-border)] animate-scale-in">
+          <div
+            className="fixed z-[9999] w-48 max-h-60 overflow-y-auto rounded-2xl glass-card border border-[var(--color-border)] animate-scale-in"
+            style={{ top: pos.top, right: pos.right }}
+          >
             {LOCALES.map((loc) => {
               const isSelected = locale === loc;
               return (
@@ -94,7 +115,8 @@ export default function LanguageSwitcher() {
               );
             })}
           </div>
-        </>
+        </>,
+        document.body
       )}
     </div>
   );

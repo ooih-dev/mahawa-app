@@ -4,15 +4,19 @@ import { routing } from "./routing";
 
 const SUPPORTED = routing.locales as readonly string[];
 
-export default getRequestConfig(async ({ locale: urlLocale }) => {
-  // urlLocale comes from X-NEXT-INTL-LOCALE header set by middleware
-  let locale: string =
-    urlLocale && (SUPPORTED as readonly string[]).includes(urlLocale)
-      ? urlLocale
-      : routing.defaultLocale;
+export default getRequestConfig(async ({ requestLocale }) => {
+  // requestLocale reads X-NEXT-INTL-LOCALE header set by middleware
+  let locale: string = routing.defaultLocale;
 
   try {
-    // Cookie overrides URL locale when set
+    const resolved = await requestLocale;
+    if (resolved && (SUPPORTED as readonly string[]).includes(resolved)) {
+      locale = resolved;
+    }
+  } catch {}
+
+  // Cookie overrides when user explicitly chose a locale
+  try {
     const fromCookie = cookies().get("mahawa-locale")?.value;
     if (
       fromCookie &&

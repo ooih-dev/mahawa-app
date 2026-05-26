@@ -25,7 +25,8 @@
     "great": "Great!",
     "keepGoing": "Keep going!",
     "goalReached": "Goal reached!",
-    "goalReachedDesc": "You've met your daily water goal!"
+    "goalReachedDesc": "You've met your daily water goal!",
+    "drinksLog": "Today's drinks"
   },
   "stats": {
     "title": "Statistics",

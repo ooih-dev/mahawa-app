@@ -25,7 +25,8 @@
     "great": "ممتاز!",
     "keepGoing": "استمر!",
     "goalReached": "تم تحقيق الهدف!",
-    "goalReachedDesc": "لقد حققت هدفك اليومي من الماء!"
+    "goalReachedDesc": "لقد حققت هدفك اليومي من الماء!",
+    "drinksLog": "مشروبات اليوم"
   },
   "stats": {
     "title": "الإحصائيات",

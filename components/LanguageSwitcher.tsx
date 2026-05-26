@@ -1,30 +1,49 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/routing";
-import { useTransition, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useState, useTransition } from "react";
 import { GlobeIcon, CheckIcon } from "@/icons";
-import { routing } from "@/i18n/routing";
 
-const localeNames: Record<string, string> = {
+const LOCALES = ["ru", "en", "ar"] as const;
+type Locale = (typeof LOCALES)[number];
+
+const localeNames: Record<Locale, string> = {
   ru: "Русский",
   en: "English",
   ar: "العربية",
 };
 
-const localeFlags: Record<string, string> = {
+const localeFlags: Record<Locale, string> = {
   ru: "RU",
   en: "EN",
   ar: "AR",
 };
 
+function setLocaleCookie(loc: Locale) {
+  const oneYear = 60 * 60 * 24 * 365;
+  document.cookie = `mahawa-locale=${loc}; path=/; max-age=${oneYear}; SameSite=Lax`;
+}
+
 export default function LanguageSwitcher() {
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
   const t = useTranslations("profile");
-  const pathname = usePathname();
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [, startTransition] = useTransition();
+
+  const switchTo = (loc: Locale) => {
+    setLocaleCookie(loc);
+    setIsOpen(false);
+    startTransition(() => {
+      // Navigate to same page with new locale prefix
+      const segments = pathname.split("/").filter(Boolean);
+      const rest = segments.slice(1).join("/");
+      const newPath = rest ? `/${loc}/${rest}` : `/${loc}`;
+      router.push(newPath);
+    });
+  };
 
   return (
     <div className="relative">
@@ -46,18 +65,12 @@ export default function LanguageSwitcher() {
             onClick={() => setIsOpen(false)}
           />
           <div className="absolute right-0 top-full mt-2 z-50 w-48 rounded-2xl overflow-hidden glass-card border border-[var(--color-border)] animate-scale-in">
-            {routing.locales.map((loc) => {
+            {LOCALES.map((loc) => {
               const isSelected = locale === loc;
               return (
                 <button
                   key={loc}
-                  disabled={isPending}
-                  onClick={() => {
-                    startTransition(() => {
-                      router.replace(pathname, { locale: loc });
-                      setIsOpen(false);
-                    });
-                  }}
+                  onClick={() => switchTo(loc)}
                   className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors duration-150 ${
                     isSelected
                       ? "bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400"

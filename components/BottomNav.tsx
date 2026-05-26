@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "@/i18n/routing";
+import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { WaterDrop, StatsIcon, ShopIcon, ProfileIcon } from "@/icons";
 

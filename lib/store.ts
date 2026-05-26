@@ -1,6 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import * as React from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 export type WaterEntry = {
   amount: number;
@@ -37,7 +38,7 @@ export type WaterContextType = {
   getProgress: () => number;
 };
 
-const defaultSchedule: ScheduleSlot[] = [
+export const defaultSchedule: ScheduleSlot[] = [
   { time: "08:00", labelKey: "schedule.morning", completed: false },
   { time: "09:30", labelKey: "schedule.beforeMeal", completed: false },
   { time: "11:00", labelKey: "schedule.morning", completed: false },
@@ -48,18 +49,18 @@ const defaultSchedule: ScheduleSlot[] = [
   { time: "19:00", labelKey: "schedule.evening", completed: false },
 ];
 
-function getTodayString(): string {
+export function getTodayString(): string {
   return new Date().toISOString().split("T")[0];
 }
 
-function getDayLabel(index: number): string {
+export function getDayLabel(index: number): string {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const d = new Date();
   d.setDate(d.getDate() - (6 - index));
   return days[d.getDay()];
 }
 
-function getDefaultData(): WaterData {
+export function getDefaultData(): WaterData {
   return {
     entries: [],
     schedule: defaultSchedule.map((s) => ({ ...s })),
@@ -69,7 +70,7 @@ function getDefaultData(): WaterData {
   };
 }
 
-const WaterContext = createContext<WaterContextType | null>(null);
+export const WaterContext = createContext<WaterContextType | null>(null);
 
 export function useWater(): WaterContextType {
   const ctx = useContext(WaterContext);
@@ -78,6 +79,12 @@ export function useWater(): WaterContextType {
 }
 
 export function WaterProvider({ children }: { children: React.ReactNode }) {
+  const value = useWaterProviderState();
+  return React.createElement(WaterContext.Provider, { value }, children);
+}
+
+// Re-export the provider hooks the Provider component needs
+export function useWaterProviderState() {
   const [data, setData] = useState<WaterData>(getDefaultData);
   const [streak, setStreak] = useState(0);
   const [isClient, setIsClient] = useState(false);
@@ -223,7 +230,7 @@ export function WaterProvider({ children }: { children: React.ReactNode }) {
     return stats;
   })();
 
-  const value: WaterContextType = {
+  return {
     data,
     addWater,
     removeWater,
@@ -232,6 +239,4 @@ export function WaterProvider({ children }: { children: React.ReactNode }) {
     streak,
     getProgress,
   };
-
-  return <WaterContext.Provider value={value}>{children}</WaterContext.Provider>;
 }

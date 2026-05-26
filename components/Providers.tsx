@@ -2,16 +2,17 @@
 
 import { ThemeProvider } from "next-themes";
 import { NextIntlClientProvider } from "next-intl";
-import { WaterProvider } from "@/lib/store";
+import { WaterProvider } from "@/lib/water-store";
 import { useEffect, useState } from "react";
 
 type Props = {
   children: React.ReactNode;
   locale: string;
   messages: Record<string, unknown>;
+  timeZone: string;
 };
 
-export default function Providers({ children, locale, messages }: Props) {
+export default function Providers({ children, locale, messages, timeZone }: Props) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function Providers({ children, locale, messages }: Props) {
 
   if (!mounted) {
     return (
-      <NextIntlClientProvider locale={locale} messages={messages}>
+      <NextIntlClientProvider locale={locale} messages={messages} timeZone={timeZone}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -36,7 +37,7 @@ export default function Providers({ children, locale, messages }: Props) {
   }
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages} timeZone={timeZone}>
       <ThemeProvider
         attribute="class"
         defaultTheme="light"
